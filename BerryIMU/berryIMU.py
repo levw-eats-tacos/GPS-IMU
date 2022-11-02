@@ -64,6 +64,7 @@ Q_gyro = 0.0015
 R_angle = 0.005
 y_bias = 0.0
 x_bias = 0.0
+z_bias = 0.0
 XP_00 = 0.0
 XP_01 = 0.0
 XP_10 = 0.0
@@ -72,8 +73,13 @@ YP_00 = 0.0
 YP_01 = 0.0
 YP_10 = 0.0
 YP_11 = 0.0
+ZP_00 = 0.0
+ZP_01 = 0.0
+ZP_10 = 0.0
+ZP_11 = 0.0
 KFangleX = 0.0
 KFangleY = 0.0
+KFangleZ = 0.0
 
 HOST = "127.0.0.1"
 PORT = 65432
@@ -151,6 +157,41 @@ def kalmanFilterX ( accAngle, gyroRate, DT):
 
     return KFangleX
 
+def kalmanFilterZ ( accAngle, gyroRate, DT):
+    z=0.0
+    S=0.0
+
+    global KFangleZ
+    global Q_angle
+    global Q_gyro
+    global z_bias
+    global ZP_00
+    global ZP_01
+    global ZP_10
+    global ZP_11
+
+    KFangleY = KFangleY + DT * (gyroRate - z_bias)
+
+    ZP_00 = ZP_00 + ( - DT * (ZP_10 + ZP_01) + Q_angle * DT )
+    ZP_01 = ZP_01 + ( - DT * ZP_11 )
+    ZP_10 = ZP_10 + ( - DT * ZP_11 )
+    ZP_11 = ZP_11 + ( + Q_gyro * DT )
+
+    z = accAngle - KFangleZ
+    S = ZP_00 + R_angle
+    K_0 = ZP_00 / S
+    K_1 = ZP_10 / S
+
+    KFangleZ = KFangleZ + ( K_0 * z )
+    z_bias = z_bias + ( K_1 * z )
+
+    ZP_00 = ZP_00 - ( K_0 * ZP_00 )
+    ZP_01 = ZP_01 - ( K_0 * ZP_01 )
+    ZP_10 = ZP_10 - ( K_1 * ZP_00 )
+    ZP_11 = ZP_11 - ( K_1 * ZP_01 )
+
+    return KFangleZ
+
 
 IMU.detectIMU()     #Detect if BerryIMU is connected.
 if(IMU.BerryIMUversion == 99):
@@ -213,6 +254,7 @@ while True:
    #Convert Accelerometer values to degrees
     AccXangle =  (math.atan2(ACCy,ACCz)*RAD_TO_DEG)
     AccYangle =  (math.atan2(ACCz,ACCx)+M_PI)*RAD_TO_DEG
+    AccZangle =  (math.atan2(ACCx,ACCy)*RAD_TO_DEG)
 
     #convert the values to -180 and +180
     if AccYangle > 90:
@@ -228,6 +270,7 @@ while True:
     #Kalman filter used to combine the accelerometer and gyro values.
     kalmanY = kalmanFilterY(AccYangle, rate_gyr_y,LP)
     kalmanX = kalmanFilterX(AccXangle, rate_gyr_x,LP)
+    kalmanZ = kalmanFilterZ(AccZangle, rate_gyr_x,LP)
 
 
     #Calculate heading
@@ -304,7 +347,7 @@ while True:
     #slow program down a bit, makes the output more readable
     time.sleep(0.03)
 
-    senderino = (str(kalmanX),str(kalmanY),str(gyroXangle),str(gyroYangle),str(gyroZangle))
+    senderino = ("kalmanx = %5.2f   kalmany = %5.2f   kalmanz = %5.2f   gyroX = %5.2f   gyroY = %5.2f   gyroZ = %5.2f" % (kalmanX,kalmanY,kalmanZ,gyroXangle,gyroYangle,gyroZangle))
     stringOutput = ''.join(senderino)
     b_header = bytearray(stringOutput, 'utf-8')
     #send over socket 
