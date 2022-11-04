@@ -170,7 +170,7 @@ def kalmanFilterZ ( accAngle, gyroRate, DT):
     global ZP_10
     global ZP_11
 
-    KFangleY = KFangleY + DT * (gyroRate - z_bias)
+    KFangleZ = KFangleZ + DT * (gyroRate - z_bias)
 
     ZP_00 = ZP_00 + ( - DT * (ZP_10 + ZP_01) + Q_angle * DT )
     ZP_01 = ZP_01 + ( - DT * ZP_11 )
