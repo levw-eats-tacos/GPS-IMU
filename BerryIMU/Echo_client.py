@@ -1,11 +1,25 @@
 import socket
+#pip install 
 from gps import *
 import time
+import time
+#pip install
+import serial
 
 HOST = "127.0.0.1"
 PORT = 65432
 
 
+
+ser = serial.Serial(
+        port='/dev/ttyS0', #check to see what we are outputting maybe /dev/USB0?
+        baudrate = 9600,
+        parity=serial.PARITY_NONE,
+        stopbits=serial.STOPBITS_ONE,
+        bytesize=serial.EIGHTBITS,
+        timeout=1
+)
+        
 def socketRec():
 	"""Talks to the server and attempts to recieve a message. It then prints what it recieves.
 
@@ -44,6 +58,7 @@ try:
 			print(getattr(report,'ept','nan'),"\t"),
 			print(getattr(report,'speed','nan'),"\t"),
 			print(getattr(report,'climb','nan'),"\t")
-		time.sleep(1) 
+		#ser.write("test test") replace with JSON when ready.
+		time.sleep(1)
 except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
     print("Done.\nExiting.")
