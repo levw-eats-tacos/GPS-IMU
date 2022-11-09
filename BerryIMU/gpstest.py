@@ -10,7 +10,7 @@ try:
         report = gpsd.next() #
         if report['class'] == 'TPV':
              
-            print(getattr(report,'lat',0.0)+"\t"+getattr(report,'lon',0.0)+"\t"+getattr(report,'time','')+"\t"+getattr(report,'alt','nan')+"\t\t"+getattr(report,'epv','nan')+"\t"+getattr(report,'ept','nan')+"\t"+getattr(report,'speed','nan')+"\t"+ getattr(report,'climb','nan')+"\t")
+            print(str(getattr(report,'lat',0.0))+"\t"+str(getattr(report,'lon',0.0))+"\t"+str(getattr(report,'time',''))+"\t"+str(getattr(report,'alt','nan'))+"\t\t"+str(getattr(report,'epv','nan'))+"\t"+str(getattr(report,'ept','nan'))+"\t"+str(getattr(report,'speed','nan'))+"\t"+ str(getattr(report,'climb','nan')+"\t"))
         time.sleep(1) 
 except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
     print("Done.\nExiting.")
