@@ -1,10 +1,12 @@
 import serial
 
-s = serial.Serial("COM8",2000000)
+s = serial.Serial("COM8")
 
 s.flushInput()
 s.flushOutput()
 
 while True:
     bytesToRead = s.inWaiting()
-    s.read(bytesToRead)
+    help = s.read(bytesToRead)
+    decoded = help.decode()
+    print(decoded)
