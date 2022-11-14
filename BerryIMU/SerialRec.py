@@ -1,4 +1,5 @@
 import serial
+import time
 
 s = serial.Serial("COM8")
 
@@ -14,3 +15,4 @@ while True:
         decoded = help.decode('utf-8', 'ignore')
         print(decoded)
         s.write('1'.encode('utf-8'))
+        time.sleep(1)
