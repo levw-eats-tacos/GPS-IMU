@@ -8,14 +8,13 @@ class SerialWrapper:
 
     def sendData(self, data):
         data += "\r\n"
-        self.ser.write(data.encode())
+        self.ser.write(data.encode('utf-8'))
 
 def main():
     ser = SerialWrapper('/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_CTBHb116L16-if00-port0')
     while True:
-        data = "hi"
-        encoded = data.encode('utf-8') 
-        ser.sendData(encoded)
+        data = 'hi'
+        ser.sendData(data)
 
 
 main()
