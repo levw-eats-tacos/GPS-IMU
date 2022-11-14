@@ -11,7 +11,7 @@ class SerialWrapper:
         self.ser.write(data.encode())
 
 def main():
-    ser = SerialWrapper('/dev/Serial')
+    ser = SerialWrapper('/dev/Serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_CTBHb116L16-if00-port0')
     while True:
         data = "hi"
         ser.sendData(data)
