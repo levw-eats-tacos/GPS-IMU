@@ -15,3 +15,6 @@ def main():
     while True:
         data = "hi"
         ser.sendData(data)
+
+
+main()
