@@ -8,5 +8,5 @@ s.flushOutput()
 while True:
     bytesToRead = s.inWaiting()
     help = s.read(bytesToRead)
-    decoded = help.decode()
+    decoded = help.decode('utf-8', 'ignore')
     print(decoded)
