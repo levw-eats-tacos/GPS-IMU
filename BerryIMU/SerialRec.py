@@ -21,5 +21,5 @@ while True:
         decoded = help.decode('utf-8', 'ignore')
         print(decoded)
         s.write('1'.encode('utf-8'))
-        time.sleep(10)
+        time.sleep(1)
         x= 0

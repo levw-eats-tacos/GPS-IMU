@@ -47,7 +47,8 @@ try:
 		data = socketRec()
 		report = gpsd.next() #
 		r = data.decode()
-		serialOut(r)
+		loads = json.loads(r)
+		
 		print(r)
 		#GPS Data
 		# if report['class'] == 'TPV':
@@ -60,7 +61,20 @@ try:
 		# 	print(getattr(report,'ept','nan'),"\t"),
 		# 	print(getattr(report,'speed','nan'),"\t"),
 		# 	print(getattr(report,'climb','nan'),"\t")
-		#ser.write("test test") replace with JSON when ready.
+		if report['class'] == 'TPV':
+			jason = {"kalmanx":loads.kalmanx,
+					"kalmany":loads.kalmany,
+					"kalmanz":loads.kalmanz,
+					"gyroX":loads.gyroX,
+					"gyroY":loads.gyroY,
+					"gyroZ":loads.gyroZ,
+					"lat":getattr(report,'lat',0.0),
+					"lon":getattr(report,'lon',0.0),
+					"alt":getattr(report,'alt','nan'),
+					"time":getattr(report,'time','')}
+			serialOut(jason)
+		else:
+			serialOut(r)
 		time.sleep(1)
 except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
     print("Done.\nExiting.")
