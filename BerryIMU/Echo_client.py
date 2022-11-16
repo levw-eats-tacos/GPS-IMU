@@ -2,7 +2,6 @@ import socket
 #pip install 
 from gps import *
 import time
-import time
 #pip install
 import serial
 import json
@@ -16,8 +15,6 @@ def serialOut(data):
 		jason = json.dumps(data)
 		ser.write(jason.encode('utf-8'))
 		ser.reset_input_buffer()
-
-ser = serial.Serial('/dev/ttyS0',9600)
         
 def socketRec():
 	"""Talks to the server and attempts to recieve a message. It then prints what it recieves.
