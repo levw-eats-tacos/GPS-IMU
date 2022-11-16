@@ -24,6 +24,7 @@ import datetime
 import os
 import sys
 import socket
+import json
 
 
 RAD_TO_DEG = 57.29578
@@ -347,9 +348,16 @@ while True:
     #slow program down a bit, makes the output more readable
     time.sleep(0.03)
 
-    senderino = ("kalmanx = %5.2f   kalmany = %5.2f   kalmanz = %5.2f   gyroX = %5.2f   gyroY = %5.2f   gyroZ = %5.2f" % (kalmanX,kalmanY,kalmanZ,gyroXangle,gyroYangle,gyroZangle))
-    stringOutput = ''.join(senderino)
-    b_header = bytearray(stringOutput, 'utf-8')
+    
+    senderino = {"kalmanx":kalmanX, 
+                "kalmany":kalmanY,   
+                "kalmanz":kalmanZ,   
+                "gyroX": gyroXangle,   
+                "gyroY": gyroYangle,   
+                "gyroZ": gyroZangle}
+    json = json.dumps(senderino)
+    #stringOutput = ''.join(senderino)
+    b_header = bytearray(json, 'utf-8')
     #send over socket 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind((HOST, PORT))

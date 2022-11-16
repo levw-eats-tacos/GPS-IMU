@@ -5,11 +5,17 @@ import time
 import time
 #pip install
 import serial
+import json
 
 HOST = "127.0.0.1"
 PORT = 65432
 
-
+def serialOut(data):
+	ser = serial.Serial('/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_CTBHb116L16-if00-port0',9600)
+	if(ser.in_waiting > 0):
+		jason = json.dumps(data)
+		ser.write(jason.encode('utf-8'))
+		ser.reset_input_buffer()
 
 ser = serial.Serial(
         port='/dev/ttyS0', #check to see what we are outputting maybe /dev/USB0?
@@ -46,6 +52,7 @@ try:
 		data = socketRec()
 		report = gpsd.next() #
 		r = data.decode()
+		serialOut(r)
 		print(r)
 		#GPS Data
 		if report['class'] == 'TPV':
