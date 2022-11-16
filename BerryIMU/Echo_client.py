@@ -48,6 +48,7 @@ try:
 		report = gpsd.next() #
 		r = data.decode()
 		loads = json.loads(r)
+		print(loads)
 		
 		print(r)
 		#GPS Data
