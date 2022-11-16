@@ -63,12 +63,12 @@ try:
 		# 	print(getattr(report,'speed','nan'),"\t"),
 		# 	print(getattr(report,'climb','nan'),"\t")
 		if report['class'] == 'TPV':
-			jason = {"kalmanx":loads.kalmanx,
-					"kalmany":loads.kalmany,
-					"kalmanz":loads.kalmanz,
-					"gyroX":loads.gyroX,
-					"gyroY":loads.gyroY,
-					"gyroZ":loads.gyroZ,
+			jason = {"kalmanx":loads['kalmanx'],
+					"kalmany":loads['kalmany'],
+					"kalmanz":loads['kalmanz'],
+					"gyroX":loads['gyroX'],
+					"gyroY":loads['gyroY'],
+					"gyroZ":loads['gyroZ'],
 					"lat":getattr(report,'lat',0.0),
 					"lon":getattr(report,'lon',0.0),
 					"alt":getattr(report,'alt','nan'),
