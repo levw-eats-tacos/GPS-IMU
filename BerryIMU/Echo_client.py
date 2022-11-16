@@ -17,14 +17,7 @@ def serialOut(data):
 		ser.write(jason.encode('utf-8'))
 		ser.reset_input_buffer()
 
-ser = serial.Serial(
-        port='/dev/ttyS0', #check to see what we are outputting maybe /dev/USB0?
-        baudrate = 9600,
-        parity=serial.PARITY_NONE,
-        stopbits=serial.STOPBITS_ONE,
-        bytesize=serial.EIGHTBITS,
-        timeout=1
-)
+ser = serial.Serial('/dev/ttyS0',9600)
         
 def socketRec():
 	"""Talks to the server and attempts to recieve a message. It then prints what it recieves.
