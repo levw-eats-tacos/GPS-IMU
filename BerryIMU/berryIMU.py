@@ -357,7 +357,7 @@ while True:
                 "gyroZ": gyroZangle}
     jason = json.dumps(senderino)
     #stringOutput = ''.join(senderino)
-    b_header = bytearray(json, 'utf-8')
+    b_header = bytearray(jason, 'utf-8')
     #send over socket 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.bind((HOST, PORT))
