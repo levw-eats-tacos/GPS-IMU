@@ -15,6 +15,8 @@ def serialOut(data):
 		jason = json.dumps(data)
 		ser.write(jason.encode('utf-8'))
 		ser.reset_input_buffer()
+	bytesToRead = ser.inWaiting()
+	print("Bytes in inbox:" +  str(bytesToRead))
         
 def socketRec():
 	"""Talks to the server and attempts to recieve a message. It then prints what it recieves.
