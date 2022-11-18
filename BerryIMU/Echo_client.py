@@ -43,7 +43,7 @@ print('latitude\tlongitude\ttime utc\t\t\taltitude\tepv\tept\tspeed\tclimb') # '
 try:
  
 	while True:
-		#Socket data
+		#Socket data (IMU)
 		data = socketRec()
 		report = gpsd.next() #
 		r = data.decode()
@@ -52,16 +52,6 @@ try:
 		
 		print(r)
 		#GPS Data
-		# if report['class'] == 'TPV':
-             
-		# 	print(getattr(report,'lat',0.0),"\t"),
-		# 	print(getattr(report,'lon',0.0),"\t"),
-		# 	print(getattr(report,'time',''),"\t"),
-		# 	print(getattr(report,'alt','nan'),"\t\t"),
-		# 	print(getattr(report,'epv','nan'),"\t"),
-		# 	print(getattr(report,'ept','nan'),"\t"),
-		# 	print(getattr(report,'speed','nan'),"\t"),
-		# 	print(getattr(report,'climb','nan'),"\t")
 		if report['class'] == 'TPV':
 			jason = {"kalmanx":loads['kalmanx'],
 					"kalmany":loads['kalmany'],

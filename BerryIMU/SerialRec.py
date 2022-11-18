@@ -16,10 +16,11 @@ while True:
         s.write('1'.encode('utf-8'))
     if(bytesToRead > 0):
         x = 0
-    if(bytesToRead > 26):
+    #format decimal places so we dont have a caniption
+    if(bytesToRead > 247):
         help = s.read(bytesToRead)
         decoded = help.decode('utf-8', 'ignore')
         print(decoded)
         s.write('1'.encode('utf-8'))
-        time.sleep(1)
+        time.sleep(2)
         x= 0
