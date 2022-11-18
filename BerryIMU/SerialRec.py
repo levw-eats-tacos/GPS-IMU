@@ -1,6 +1,7 @@
 import serial
 import time
 
+#check com port before running
 s = serial.Serial("COM8")
 
 s.flushInput()

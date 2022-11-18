@@ -52,17 +52,18 @@ try:
 		
 		print(r)
 		#GPS Data
+		#rounding: 3 places for IMU, 6 for GPS
 		if report['class'] == 'TPV':
-			jason = {"kalmanx":loads['kalmanx'],
-					"kalmany":loads['kalmany'],
-					"kalmanz":loads['kalmanz'],
-					"gyroX":loads['gyroX'],
-					"gyroY":loads['gyroY'],
-					"gyroZ":loads['gyroZ'],
-					"lat":getattr(report,'lat',0.0),
-					"lon":getattr(report,'lon',0.0),
-					"alt":getattr(report,'alt','nan'),
-					"time":getattr(report,'time','')}
+			jason = {"kalmanx":round(loads['kalmanx'],3),
+					"kalmany":round(loads['kalmany'],3),
+					"kalmanz":round(loads['kalmanz'],3),
+					"gyroX":round(loads['gyroX'],3),
+					"gyroY":round(loads['gyroY'],3),
+					"gyroZ":round(loads['gyroZ'],3),
+					"lat":round(getattr(report,'lat',0.0),6),
+					"lon":round(getattr(report,'lon',0.0),6),
+					"alt":round(getattr(report,'alt','nan'),6),
+					"time":round(getattr(report,'time',''),6)}
 			serialOut(jason)
 		else:
 			serialOut(r)
