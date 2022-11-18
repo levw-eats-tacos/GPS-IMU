@@ -53,17 +53,27 @@ try:
 		print(r)
 		#GPS Data
 		#rounding: 3 places for IMU, 6 for GPS
+		kalx = round(float(loads['kalmanx']),3)
+		kaly = round(float(loads['kalmany']),3)
+		kalz = round(float(loads['kalmanz']),3)
+		gyrx = round(float(loads['gyroX']),3)
+		gyry = round(float(loads['gyroY']),3)
+		gyrz = round(float(loads['gyroZ']),3)
+		latit = round(float(getattr(report,'lat',0.0)),6)
+		longi = round(float(getattr(report,'lon',0.0)),6)
+		altit = round(float(getattr(report,'alt','nan')),6) 
+		currentTime = getattr(report,'time','')
 		if report['class'] == 'TPV':
-			jason = {"kalmanx":round(loads['kalmanx'],3),
-					"kalmany":round(loads['kalmany'],3),
-					"kalmanz":round(loads['kalmanz'],3),
-					"gyroX":round(loads['gyroX'],3),
-					"gyroY":round(loads['gyroY'],3),
-					"gyroZ":round(loads['gyroZ'],3),
-					"lat":round(getattr(report,'lat',0.0),6),
-					"lon":round(getattr(report,'lon',0.0),6),
-					"alt":round(getattr(report,'alt','nan'),6),
-					"time":round(getattr(report,'time',''),6)}
+			jason = {"kalmanx":kalx,
+					"kalmany":kaly,
+					"kalmanz":kalz,
+					"gyroX":gyrx,
+					"gyroY":gyry,
+					"gyroZ":gyrz,
+					"lat":latit,
+					"lon":longi,
+					"alt":altit,
+					"time":currentTime}
 			serialOut(jason)
 		else:
 			serialOut(r)
