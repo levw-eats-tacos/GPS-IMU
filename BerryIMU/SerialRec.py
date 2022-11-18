@@ -18,7 +18,7 @@ while True:
     if(bytesToRead > 0):
         x = 0
     #format decimal places so we dont have a caniption
-    if(bytesToRead > 247):
+    if(bytesToRead > 158):
         help = s.read(bytesToRead)
         decoded = help.decode('utf-8', 'ignore')
         print(decoded)
