@@ -11,14 +11,18 @@ PORT = 65432
 
 ser = serial.Serial('/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_CTBHb116L16-if00-port0',9600)
 
+#should send serial data out. 
 def serialOut(data):
+	"""Sends serial data out if there is anything in the serial receiving buffer. 
+
+	Args:
+		data (_type_): The data you want to send out. 
+	"""
 	global ser
 	if(ser.in_waiting > 0):
 		jason = json.dumps(data)
 		ser.write(jason.encode('utf-8'))
 		ser.reset_input_buffer()
-	bytesToRead = ser.inWaiting()
-	print("Bytes in inbox:" +  str(bytesToRead))
         
 def socketRec():
 	"""Talks to the server and attempts to recieve a message. It then prints what it recieves.
@@ -35,11 +39,11 @@ def socketRec():
 	return data
 
 
-#starts GPS stuff
+#starts GPS stuff -> good for debugging
 gpsd = gps(mode=WATCH_ENABLE|WATCH_NEWSTYLE) 
 print('latitude\tlongitude\ttime utc\t\t\taltitude\tepv\tept\tspeed\tclimb') # '\t' = TAB to try and output the data in columns.
 
-#loop through the GPS and Socket. First through Socket. Then through GPS
+#loop through the GPS and Socket. should recieve socket data frist from berryIMU and then generate GPS data using its own code.
 try:
  
 	while True:

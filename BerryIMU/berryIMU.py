@@ -349,6 +349,9 @@ while True:
     time.sleep(0.03)
 
     
+
+
+    #starts to send data over socket. Should be recieved by Echo_client.py
     senderino = {"kalmanx":kalmanX, 
                 "kalmany":kalmanY,   
                 "kalmanz":kalmanZ,   
