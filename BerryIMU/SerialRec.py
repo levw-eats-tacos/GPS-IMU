@@ -2,7 +2,7 @@ import serial
 import time
 
 #check com port before running
-s = serial.Serial("COM8")
+s = serial.Serial("COM5")
 
 s.flushInput()
 s.flushOutput()
