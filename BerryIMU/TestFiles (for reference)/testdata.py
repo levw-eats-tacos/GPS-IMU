@@ -6,8 +6,8 @@ import math
 
 
 roll = 2.6335
-pitch = 0.4506
-yaw = 1.1684
+pitch = math.pi/2
+yaw = math.pi/3.24
 
 
 yawMatrix = np.matrix([
@@ -39,15 +39,29 @@ rz = multi * (R[1, 0] - R[0, 1]) * theta
 
 ##
 
-
-
-soa = np.array([0, 0, 1, 1, -2, 0])
-
-X, Y, Z, U, V, W = zip(*soa)
+u = math.cos(yaw) * math.cos(pitch)
+v = math.sin(yaw) * math.cos(pitch)
+w = math.sin(pitch)
 fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.quiver(X, Y, Z, U, V, W)
-ax.set_xlim([-1, 0.5])
-ax.set_ylim([-1, 1.5])
-ax.set_zlim([-1, 8])
+ax = fig.add_subplot(111, projection = '3d')
+ax.quiver(0,0,0,u,v,w)
+ax.set_xlim([0, 5])
+ax.set_ylim([0, 5])
+ax.set_zlim([0, 5])
 plt.show()
+
+soa = np.array([0, 0, 1, rx, ry, rz])
+print(rx,ry,rz)
+X = soa[0]
+Y = soa[1]
+Z = soa[2]
+U = soa[3]
+V = soa[4]
+W = soa[5]
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+# ax.quiver(X, Y, Z, U, V, W)
+# ax.set_xlim([-1, 0.5])
+# ax.set_ylim([-1, 1.5])
+# ax.set_zlim([-1, 8])
+# plt.show()

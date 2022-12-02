@@ -2,7 +2,7 @@ import serial
 import time
 
 #check com port before running
-s = serial.Serial("COM5")
+s = serial.Serial("COM8")
 
 s.flushInput()
 s.flushOutput()
@@ -21,7 +21,9 @@ def buffercheck():
         else:
             stringOfStuff = stringOfStuff + nextchar
 
-
+#x = pitch
+#y = roll
+#z = yaw
 while True:
     bytesToRead = s.inWaiting()
     x=x+1
