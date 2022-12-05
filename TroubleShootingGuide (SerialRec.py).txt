@@ -1,0 +1,10 @@
+"Cannot find module serial"
+
+-> install pyserial (pip install pyserial). Make sure that you don't have any other serial package installed because it will get angry at you if you do
+
+
+"Serial Exception could not open port 'COM8'"
+
+-> open your device manager and go to ports. Look for what Prolific PL2303GS USB Serial COM Port is labeled under
+	(it should be labeled in parenthesis next to the name. Usually COM5 or COM8, but I have seen it go all over the place lol)
+	Change the python code to match what COM port it is under. This change will be on line 5 of SerialRec.py
