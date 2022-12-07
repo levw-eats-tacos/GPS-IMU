@@ -30,6 +30,7 @@ public:
     
 private:
     HANDLE m_serialHandle;
+    std::string buffercheck();
 
 
 };
