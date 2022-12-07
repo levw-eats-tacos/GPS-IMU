@@ -24,7 +24,7 @@ def serialOut(data):
 		#ser.write(jason.encode('utf-8'))
 		ser.write((str(data)).encode('utf-8'))
 		ser.reset_input_buffer()
-        
+
 def socketRec():
 	"""Talks to the server and attempts to recieve a message. It then prints what it recieves.
 
