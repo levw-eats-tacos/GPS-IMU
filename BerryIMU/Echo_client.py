@@ -80,6 +80,6 @@ try:
 					#"alt":altit,
 					#"time":currentTime}
 			serialOut(jason)
-		time.sleep(.5)
+		time.sleep(.25)
 except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
     print("Done.\nExiting.")
