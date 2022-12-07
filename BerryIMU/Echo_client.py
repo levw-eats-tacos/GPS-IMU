@@ -9,7 +9,7 @@ import json
 HOST = "127.0.0.1"
 PORT = 65432
 
-ser = serial.Serial('/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_CTBHb116L16-if00-port0',9600)
+ser = serial.Serial('/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller_CTBHb116L16-if00-port0',19200)
 
 #should send serial data out. 
 def serialOut(data):
