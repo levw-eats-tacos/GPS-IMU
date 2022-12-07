@@ -68,16 +68,16 @@ try:
 		altit = round(float(getattr(report,'alt','nan')),6) 
 		currentTime = getattr(report,'time','')
 		if report['class'] == 'TPV':
-			jason = {"kalmanx":kalx,
-					"kalmany":kaly,
-					"kalmanz":kalz,
-					"gyroX":gyrx,
-					"gyroY":gyry,
-					"gyroZ":gyrz,
-					"lat":latit,
-					"lon":longi,
-					"alt":altit,
-					"time":currentTime}
+			jason = {'kalmanx':kalx,
+					'kalmany':kaly,
+					'kalmanz':kalz,
+					'gyroX':gyrx,
+					'gyroY':gyry,
+					'gyroZ':gyrz,
+					'lat':latit,
+					'lon':longi,
+					'alt':altit,
+					'time':currentTime}
 			serialOut(jason)
 		time.sleep(.5)
 except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
