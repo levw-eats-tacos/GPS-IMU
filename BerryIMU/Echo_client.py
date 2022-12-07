@@ -21,7 +21,7 @@ def serialOut(data):
 	global ser
 	if(ser.in_waiting > 0):
 		jason = json.dumps(data)
-		ser.write(jason.encode('utf-8'))
+		ser.write(jason.encode('ascii'))
 		ser.reset_input_buffer()
         
 def socketRec():

@@ -354,7 +354,7 @@ while True:
     #starts to send data over socket. Should be recieved by Echo_client.py
     senderino = {"kalmanx":kalmanX, 
                 "kalmany":kalmanY,   
-                "kalmanz":kalmanZ,   
+                "kalmanz":kalmanZ,
                 "gyroX": gyroXangle,   
                 "gyroY": gyroYangle,   
                 "gyroZ": gyroZangle}
