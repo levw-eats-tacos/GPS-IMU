@@ -2,6 +2,8 @@
 #define BERRY_H
 
 #include "device.h"
+#include <windows.h>
+
 /*
     The Device class is an interface used for the GPS/IMU
     devices that will be tested. If any device needs to be
@@ -25,6 +27,10 @@ public:
 
     // function for disconnecting the device
     virtual void disconnect(){}
+    
+private:
+    HANDLE m_serialHandle;
+
 
 };
 

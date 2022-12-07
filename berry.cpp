@@ -44,15 +44,23 @@ void Berry::connect()
     m_serialHandle = CreateFile("\\\\.\\COM8", GENERIC_READ | GENERIC_WRITE, 0, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 
     // Do some basic settings
-    DCB serialParams = {0};
-    serialParams.DCBlength = sizeof(serialParams);
+    DCB dcbSerialParam = {0};
+    dcbSerial.DCBlength = sizeof(dcbSerialParam);
 
-    GetCommState(serialHandle, &serialParams);
-    serialParams.BaudRate = baudrate;
-    serialParams.ByteSize = byteSize;
-    serialParams.StopBits = stopBits;
-    serialParams.Parity = parity;
-    SetCommState(m_serialHandle, &serialParams);
+    if (!GetCommState(h_Serial, &dcbSerialParam))
+    {
+        // handle error here
+    }
+
+    dcbSerialParam.BaudRate = CBR_19200;
+    dcbSerialParam.ByteSize = 8;
+    dcbSerialParam.StopBits = ONESTOPBIT;
+    dcbSerialParam.Parity = NOPARITY;
+
+    if (!SetCommState(h_Serial, &dcbSerialParam))
+    {
+        // handle error here
+    }
 
     // Set timeouts
     COMMTIMEOUTS timeout = {0};

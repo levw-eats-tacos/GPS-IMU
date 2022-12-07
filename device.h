@@ -2,7 +2,6 @@
 #define DEVICE_H
 
 #include <QObject>
-#include <windows.h>
 
 /*
     The Device class is an interface used for the GPS/IMU
@@ -37,10 +36,6 @@ public:
 protected:
     // stores the current yaw, pitch, and roll of the device
     float arr[3];
-
-private:
-    HANDLE m_serialHandle;
-
 
 };
 
