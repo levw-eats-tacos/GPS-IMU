@@ -71,14 +71,14 @@ try:
 		if report['class'] == 'TPV':
 			jason = {"kalmanx":kalx,
 					"kalmany":kaly,
-					"kalmanz":kalz}
-					#"gyroX":gyrx,
-					#"gyroY":gyry,
-					#"gyroZ":gyrz,
-					#"lat":latit,
-					#"lon":longi,
-					#"alt":altit,
-					#"time":currentTime}
+					"kalmanz":kalz,
+					"gyroX":gyrx,
+					"gyroY":gyry,
+					"gyroZ":gyrz,
+					"lat":latit,
+					"lon":longi,
+					"alt":altit,
+					"time":currentTime}
 			serialOut(jason)
 		time.sleep(.25)
 except (KeyboardInterrupt, SystemExit): #when you press ctrl+c
